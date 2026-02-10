@@ -261,17 +261,19 @@
             .cursor-ring, .cursor-dot { display: none; }
             .echo { display: none; }
 
-            /* Logo: centered in upper portion, bigger */
+            /* Logo: use SVG for pixel-perfect centering, bigger */
             .hero-base {
-                background-image: url('assets/hero-logo-transparent.png');
-                background-size: 85% auto;
+                background-image: url('assets/hero-logo-transparent.svg');
+                background-size: 80% auto;
                 background-repeat: no-repeat;
-                background-position: center 38%;
+                background-position: center center;
                 background-color: var(--cream);
             }
 
+            /* Baby photo: center on the baby, not top of image */
             .hero-reveal {
                 background-image: url('assets/hero-mess-mobile.jpg');
+                background-position: center 30%;
                 -webkit-mask-image: none !important;
                 mask-image: none !important;
                 opacity: 0;
@@ -288,13 +290,13 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-end;
-                padding-bottom: env(safe-area-inset-bottom, 16px);
-                padding-bottom: max(env(safe-area-inset-bottom), 16px);
+                padding-bottom: env(safe-area-inset-bottom, 20px);
+                padding-bottom: max(env(safe-area-inset-bottom), 20px);
             }
 
             /* Download link: top-right stays absolute */
             .nav-link {
-                position: absolute;
+                position: absolute !important;
                 top: 32px;
                 right: 24px;
                 left: auto;
@@ -306,47 +308,55 @@
             /* "tap to reveal" */
             .mobile-hint {
                 display: block !important;
-                position: relative;
-                bottom: auto;
-                left: auto;
-                transform: none;
-                margin-bottom: 16px;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                transform: none !important;
+                margin-bottom: 12px;
             }
 
             /* Tagline — centered */
             .tagline {
-                position: relative;
-                bottom: auto;
-                left: auto;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
                 text-align: center;
                 font-size: 11px;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
                 transition: color 0.3s ease, text-shadow 0.3s ease;
             }
 
-            /* Socials — centered row */
+            /* Socials — centered row, force visible */
             .socials {
-                position: relative;
-                bottom: auto;
-                right: auto;
+                position: relative !important;
+                bottom: auto !important;
+                right: auto !important;
+                display: flex !important;
+                flex-direction: row !important;
                 justify-content: center;
-                gap: 22px;
-                margin-bottom: 16px;
+                align-items: center;
+                gap: 24px;
+                margin-bottom: 14px;
+            }
+            .socials a {
+                display: flex !important;
+                pointer-events: all;
             }
             .socials svg {
-                width: 20px;
-                height: 20px;
+                width: 22px;
+                height: 22px;
                 transition: fill 0.3s ease;
             }
 
             /* Legal — centered */
             .legal {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                transform: none;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                transform: none !important;
+                display: flex;
                 gap: 20px;
-                margin-bottom: 6px;
+                margin-bottom: 4px;
             }
             .legal a {
                 font-size: 9px;
@@ -355,12 +365,12 @@
 
             /* Copyright — centered */
             .copyright {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                transform: none;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                transform: none !important;
                 font-size: 8px;
-                margin-bottom: 12px;
+                margin-bottom: 8px;
                 transition: color 0.3s ease, text-shadow 0.3s ease;
             }
 
