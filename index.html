@@ -364,24 +364,24 @@
                 transition: color 0.3s ease, text-shadow 0.3s ease;
             }
 
-            /* When reveal is active on mobile, invert elements */
-            .hero-reveal.mobile-reveal ~ .ui-layer .tagline,
-            .hero-reveal.mobile-reveal ~ .ui-layer .copyright {
-                color: var(--white);
-                text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+            /* When reveal is active on mobile, invert all text to white */
+            body.revealing .tagline,
+            body.revealing .copyright {
+                color: var(--white) !important;
+                text-shadow: 0 1px 10px rgba(0,0,0,0.3) !important;
             }
-            .hero-reveal.mobile-reveal ~ .ui-layer .legal a {
-                color: rgba(255,255,255,0.75);
+            body.revealing .legal a {
+                color: rgba(255,255,255,0.75) !important;
             }
-            .hero-reveal.mobile-reveal ~ .ui-layer .socials svg {
-                fill: var(--white);
+            body.revealing .socials svg {
+                fill: var(--white) !important;
             }
-            .hero-reveal.mobile-reveal ~ .ui-layer .nav-link {
-                color: var(--white);
-                text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+            body.revealing .nav-link {
+                color: var(--white) !important;
+                text-shadow: 0 1px 10px rgba(0,0,0,0.3) !important;
             }
-            .hero-reveal.mobile-reveal ~ .ui-layer .mobile-hint {
-                color: rgba(255,255,255,0.5);
+            body.revealing .mobile-hint {
+                color: rgba(255,255,255,0.5) !important;
             }
         }
 
@@ -580,13 +580,16 @@
             hero.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 heroReveal.classList.add('mobile-reveal');
+                document.body.classList.add('revealing');
                 if (mobileHint) mobileHint.style.display = 'none';
             });
             hero.addEventListener('touchend', () => {
                 heroReveal.classList.remove('mobile-reveal');
+                document.body.classList.remove('revealing');
             });
             hero.addEventListener('touchcancel', () => {
                 heroReveal.classList.remove('mobile-reveal');
+                document.body.classList.remove('revealing');
             });
         }
 
