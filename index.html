@@ -107,7 +107,7 @@
             position: fixed;
             width: 240px;
             height: 240px;
-            border: 1.5px solid rgba(212, 119, 92, 0.35);
+            border: none;
             border-radius: 50%;
             pointer-events: none;
             z-index: 100;
@@ -244,15 +244,22 @@
             .cursor-ring, .cursor-dot { display: none; }
             .echo { display: none; }
 
+            .hero-base {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+
             .hero-reveal {
                 background-image: url('assets/hero-mess-mobile.jpg');
                 -webkit-mask-image: none !important;
                 mask-image: none !important;
                 opacity: 0;
-                transition: opacity 0.6s ease;
+                transition: opacity 0.35s ease-out;
             }
             .hero-reveal.mobile-reveal {
                 opacity: 1;
+                transition: opacity 0.15s ease-in;
             }
 
             .nav-link {
@@ -464,13 +471,18 @@
             mouseY = e.clientY;
         });
 
-        // ── Mobile: tap to toggle ──
+        // ── Mobile: reveal on touch, vanish on release ──
         if (isMobile) {
-            let revealed = false;
-            hero.addEventListener('touchstart', () => {
-                revealed = !revealed;
-                heroReveal.classList.toggle('mobile-reveal', revealed);
-                if (revealed && mobileHint) mobileHint.style.display = 'none';
+            hero.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                heroReveal.classList.add('mobile-reveal');
+                if (mobileHint) mobileHint.style.display = 'none';
+            });
+            hero.addEventListener('touchend', () => {
+                heroReveal.classList.remove('mobile-reveal');
+            });
+            hero.addEventListener('touchcancel', () => {
+                heroReveal.classList.remove('mobile-reveal');
             });
         }
 
