@@ -102,17 +102,9 @@
             100% { opacity: 0; transform: scale(1.6); }
         }
 
-        /* ── Custom Cursor ── */
+        /* ── Custom Cursor (invisible ring — only the dot shows) ── */
         .cursor-ring {
-            position: fixed;
-            width: 240px;
-            height: 240px;
-            border: none;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 100;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s ease-out, height 0.2s ease-out;
+            display: none;
         }
         .cursor-dot {
             position: fixed;
@@ -147,7 +139,7 @@
             color: var(--clay);
             text-decoration: none;
             pointer-events: all;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
             z-index: 11;
         }
         .nav-link .arrow {
@@ -170,41 +162,29 @@
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--clay);
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
             z-index: 11;
         }
 
-        /* ── Social Icons (bottom-right) ── */
-        .socials {
+        /* ── Copyright (bottom-center) ── */
+        .copyright {
             position: absolute;
-            bottom: 48px;
-            right: 52px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.06em;
+            color: rgba(139, 90, 60, 0.3);
+            white-space: nowrap;
             z-index: 11;
-        }
-        .socials a {
-            pointer-events: all;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.25s ease;
-        }
-        .socials a:hover {
-            transform: scale(1.15);
-        }
-        .socials svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--clay);
-            transition: fill 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        /* ── Legal Links (bottom-center) ── */
+        /* ── Legal Links (above copyright) ── */
         .legal {
             position: absolute;
-            bottom: 52px;
+            bottom: 38px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -225,17 +205,51 @@
             color: var(--clay);
         }
 
-        /* ── Inverted state — when the spotlight (baby photo) passes over text ── */
+        /* ── Social Icons (bottom-right) ── */
+        .socials {
+            position: absolute;
+            bottom: 48px;
+            right: 52px;
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            z-index: 11;
+        }
+        .socials a {
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s ease;
+        }
+        .socials a:hover {
+            transform: scale(1.15);
+        }
+        .socials svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--clay);
+            transition: fill 0.3s ease;
+        }
+
+        /* ── Desktop: inverted state — "Download app" goes dark/black for contrast ── */
+        .nav-link.inverted {
+            color: var(--dark) !important;
+            text-shadow: 0 1px 8px rgba(255,255,255,0.3) !important;
+        }
+        /* Everything else inverts to white */
         .inverted {
             color: var(--white) !important;
-            text-shadow: 0 1px 12px rgba(0,0,0,0.2) !important;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.25) !important;
         }
         .inverted svg {
             fill: var(--white) !important;
         }
-        .inverted.legal a,
         .legal a.inverted {
             color: rgba(255,255,255,0.7) !important;
+        }
+        .copyright.inverted {
+            color: rgba(255,255,255,0.5) !important;
         }
 
         /* ── Mobile ── */
@@ -245,9 +259,11 @@
             .echo { display: none; }
 
             .hero-base {
-                background-size: contain;
+                background-image: url('assets/hero-logo-transparent.png');
+                background-size: 75% auto;
                 background-repeat: no-repeat;
                 background-position: center center;
+                background-color: var(--cream);
             }
 
             .hero-reveal {
@@ -262,30 +278,57 @@
                 transition: opacity 0.15s ease-in;
             }
 
+            /* When reveal is active on mobile, invert bottom elements */
+            .hero-reveal.mobile-reveal ~ .ui-layer .tagline,
+            .hero-reveal.mobile-reveal ~ .ui-layer .copyright {
+                color: var(--white);
+                text-shadow: 0 1px 10px rgba(0,0,0,0.25);
+            }
+            .hero-reveal.mobile-reveal ~ .ui-layer .legal a {
+                color: rgba(255,255,255,0.7);
+            }
+            .hero-reveal.mobile-reveal ~ .ui-layer .socials svg {
+                fill: var(--white);
+            }
+            .hero-reveal.mobile-reveal ~ .ui-layer .nav-link {
+                color: var(--dark);
+                text-shadow: 0 1px 8px rgba(255,255,255,0.3);
+            }
+
             .nav-link {
                 top: 32px;
                 right: 28px;
                 font-size: 12px;
             }
             .tagline {
-                bottom: 80px;
+                bottom: 72px;
                 left: 28px;
                 font-size: 11px;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
             }
             .socials {
                 bottom: 36px;
                 right: 28px;
-                gap: 18px;
+                gap: 16px;
             }
             .socials svg {
                 width: 18px;
                 height: 18px;
+                transition: fill 0.3s ease;
             }
             .legal {
-                bottom: 40px;
+                bottom: 34px;
                 gap: 20px;
             }
-            .legal a { font-size: 9px; }
+            .legal a {
+                font-size: 9px;
+                transition: color 0.3s ease;
+            }
+            .copyright {
+                bottom: 16px;
+                font-size: 8px;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
 
             .mobile-hint {
                 display: block !important;
@@ -296,7 +339,7 @@
         .mobile-hint {
             display: none;
             position: absolute;
-            bottom: 130px;
+            bottom: 110px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Poppins', sans-serif;
@@ -354,16 +397,14 @@
 
     <!-- Hero -->
     <div class="hero" id="hero">
-        <!-- IMAGE 1: Tocomo logo on cream — the clean, minimal base -->
         <div class="hero-base" id="heroBase"></div>
-        <!-- IMAGE 2: Baby mess — revealed under cursor spotlight -->
         <div class="hero-reveal" id="heroReveal"></div>
     </div>
 
     <!-- UI Overlay -->
     <div class="ui-layer" id="uiLayer">
 
-        <!-- Download App (top-right nav) -->
+        <!-- Download App (top-right) -->
         <a href="#download" class="nav-link parallax-el" id="navLink" data-depth="0.015">
             Download app<span class="arrow">→</span>
         </a>
@@ -382,37 +423,51 @@
             <a href="terms.html">Terms</a>
         </div>
 
+        <!-- Copyright (bottom-center, below legal) -->
+        <div class="copyright" id="copyright">&copy; 2026 Tocomo LLC. All rights reserved.</div>
+
         <!-- Social Icons (bottom-right) -->
         <div class="socials" id="socials">
+            <!-- Instagram -->
             <a href="https://instagram.com/tocomoapp" target="_blank" rel="noopener" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.088 4.088 0 011.47.958c.453.453.78.91.957 1.47.163.46.35 1.26.404 2.43.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.404 2.43a4.088 4.088 0 01-.957 1.47 4.088 4.088 0 01-1.47.957c-.46.164-1.26.35-2.43.404-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.404a4.088 4.088 0 01-1.47-.957 4.088 4.088 0 01-.957-1.47c-.164-.46-.35-1.26-.404-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.404-2.43a4.088 4.088 0 01.957-1.47A4.088 4.088 0 015.064 2.293c.46-.164 1.26-.35 2.43-.404C8.76 1.831 9.14 1.82 12 1.82V2.163zm0 2.444a7.393 7.393 0 100 14.786 7.393 7.393 0 000-14.786zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
                 </svg>
             </a>
+            <!-- TikTok -->
+            <a href="https://tiktok.com/@tocomoapp" target="_blank" rel="noopener" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.17a8.16 8.16 0 004.77 1.52V7.24a4.85 4.85 0 01-1.01-.55z"/>
+                </svg>
+            </a>
+            <!-- X / Twitter -->
             <a href="https://x.com/tocomoapp" target="_blank" rel="noopener" aria-label="X / Twitter">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
             </a>
+            <!-- Contact / Email -->
+            <a href="mailto:hello@tocomo.co" aria-label="Contact">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
         </div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-ring" id="cursorRing"></div>
+    <!-- Custom Cursor (dot only, no ring) -->
     <div class="cursor-dot" id="cursorDot"></div>
 
     <script>
     (function() {
         'use strict';
 
-        // ── Config ──
         const SPOTLIGHT_RADIUS = 130;
         const CURSOR_LERP = 0.09;
         const MASK_LERP = 0.07;
         const ECHO_SPEED_THRESHOLD = 14;
         const ECHO_INTERVAL = 55;
 
-        // ── State ──
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         let cursorX = mouseX, cursorY = mouseY;
@@ -422,9 +477,7 @@
         let isMobile = window.innerWidth <= 768;
         let smoothSpeed = 0;
 
-        // ── DOM ──
         const heroReveal = document.getElementById('heroReveal');
-        const cursorRing = document.getElementById('cursorRing');
         const cursorDot = document.getElementById('cursorDot');
         const gridCanvas = document.getElementById('gridCanvas');
         const ctx = gridCanvas.getContext('2d');
@@ -432,29 +485,30 @@
         const hero = document.getElementById('hero');
         const mobileHint = document.getElementById('mobileHint');
 
-        // Invertable elements — these switch color when spotlight overlaps
+        // Invertable elements
         const navLink = document.getElementById('navLink');
         const tagline = document.getElementById('tagline');
+        const copyright = document.getElementById('copyright');
         const socialLinks = document.querySelectorAll('#socials a');
         const legalLinksEl = document.querySelectorAll('#legalLinks a');
 
-        const allInvertables = [navLink, tagline, ...socialLinks, ...legalLinksEl];
+        const allInvertables = [navLink, tagline, copyright, ...socialLinks, ...legalLinksEl];
 
-        // Parallax
         const parallaxEls = document.querySelectorAll('.parallax-el');
 
-        // ── Preload images ──
+        // Preload
         let loaded = 0;
         function onLoad() {
             loaded++;
             if (loaded >= 2) setTimeout(() => loader.classList.add('hidden'), 200);
         }
-        const i1 = new Image(); i1.onload = onLoad; i1.onerror = onLoad; i1.src = 'assets/hero-logo.png';
+        const i1 = new Image(); i1.onload = onLoad; i1.onerror = onLoad;
+        i1.src = isMobile ? 'assets/hero-logo-transparent.png' : 'assets/hero-logo.png';
         const i2 = new Image(); i2.onload = onLoad; i2.onerror = onLoad;
         i2.src = isMobile ? 'assets/hero-mess-mobile.jpg' : 'assets/hero-mess-desktop.jpg';
         setTimeout(() => loader.classList.add('hidden'), 5000);
 
-        // ── Canvas ──
+        // Canvas
         function resizeCanvas() {
             gridCanvas.width = window.innerWidth;
             gridCanvas.height = window.innerHeight;
@@ -465,13 +519,13 @@
             isMobile = window.innerWidth <= 768;
         });
 
-        // ── Mouse ──
+        // Mouse
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
 
-        // ── Mobile: reveal on touch, vanish on release ──
+        // Mobile: reveal on touch, vanish on release
         if (isMobile) {
             hero.addEventListener('touchstart', (e) => {
                 e.preventDefault();
@@ -486,7 +540,7 @@
             });
         }
 
-        // ── Echo ──
+        // Echo
         function spawnEcho(x, y, size) {
             const el = document.createElement('div');
             el.className = 'echo';
@@ -496,10 +550,9 @@
             setTimeout(() => el.remove(), 800);
         }
 
-        // ── Hit test ──
+        // Hit test
         function overlaps(el, cx, cy, radius) {
             const r = el.getBoundingClientRect();
-            // Closest point on rect to circle center
             const nearX = Math.max(r.left, Math.min(cx, r.right));
             const nearY = Math.max(r.top, Math.min(cy, r.bottom));
             const dx = cx - nearX;
@@ -507,17 +560,14 @@
             return (dx * dx + dy * dy) < (radius * radius);
         }
 
-        // ── Grid ──
+        // Grid
         function drawGrid(time) {
             ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
-
             const sp = 70;
             const ox = (mouseX - gridCanvas.width / 2) * 0.008;
             const oy = (mouseY - gridCanvas.height / 2) * 0.008;
-
             ctx.lineWidth = 0.5;
 
-            // Verticals
             for (let x = -sp; x < gridCanvas.width + sp; x += sp) {
                 const dist = Math.abs((x + ox) - mouseX);
                 const inf = Math.max(0, 1 - dist / 350);
@@ -528,8 +578,6 @@
                 ctx.strokeStyle = `rgba(212, 119, 92, ${0.025 + inf * 0.04})`;
                 ctx.stroke();
             }
-
-            // Horizontals
             for (let y = -sp; y < gridCanvas.height + sp; y += sp) {
                 const dist = Math.abs((y + oy) - mouseY);
                 const inf = Math.max(0, 1 - dist / 350);
@@ -542,32 +590,25 @@
             }
         }
 
-        // ── Animate ──
+        // Animate
         function animate(time) {
             requestAnimationFrame(animate);
 
             if (isMobile) { drawGrid(time); return; }
 
-            // Lerp cursor
             cursorX += (mouseX - cursorX) * CURSOR_LERP;
             cursorY += (mouseY - cursorY) * CURSOR_LERP;
             maskX += (mouseX - maskX) * MASK_LERP;
             maskY += (mouseY - maskY) * MASK_LERP;
 
-            // Speed
             const dx = mouseX - prevMouseX;
             const dy = mouseY - prevMouseY;
             const rawSpeed = Math.sqrt(dx * dx + dy * dy);
             smoothSpeed += (rawSpeed - smoothSpeed) * 0.15;
 
-            // Dynamic radius
             const radius = SPOTLIGHT_RADIUS + Math.min(smoothSpeed * 0.9, 70);
 
-            // Cursor visuals
-            cursorRing.style.left = cursorX + 'px';
-            cursorRing.style.top = cursorY + 'px';
-            cursorRing.style.width = (radius * 2) + 'px';
-            cursorRing.style.height = (radius * 2) + 'px';
+            // Cursor dot
             cursorDot.style.left = mouseX + 'px';
             cursorDot.style.top = mouseY + 'px';
 
@@ -582,7 +623,7 @@
                 lastEchoTime = time;
             }
 
-            // Parallax (subtle opposite movement)
+            // Parallax
             const cx = window.innerWidth / 2;
             const cy = window.innerHeight / 2;
             parallaxEls.forEach(el => {
@@ -590,7 +631,7 @@
                 el.style.transform = `translate(${-(mouseX - cx) * d}px, ${-(mouseY - cy) * d}px)`;
             });
 
-            // Inversion — when spotlight (photo) overlaps text, switch to white
+            // Inversion
             allInvertables.forEach(el => {
                 if (overlaps(el, maskX, maskY, radius)) {
                     el.classList.add('inverted');
