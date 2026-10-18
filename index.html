@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tocomo &mdash; Safe BLW Recipes &amp; Guides for Your Baby</title>
-    <meta name="description" content="Safe baby-led weaning recipes, age-based cutting guides and a weekly meal planner that turns into a shopping list you can order through Instacart. For babies starting solids.">
-    <meta property="og:title" content="Tocomo &mdash; Safe BLW Recipes &amp; Guides for Your Baby">
-    <meta property="og:description" content="Safe BLW recipes with cutting guides by age. Free download.">
+    <title>Tocomo: Baby Meal Planner with Grocery Delivery</title>
+    <meta name="description" content="Tocomo plans your baby's meals for the whole week with age safe cutting guides and allergen alerts, then orders every ingredient through Instacart in one tap.">
+    <meta property="og:title" content="Tocomo: Baby Meal Planner with Grocery Delivery">
+    <meta property="og:description" content="Plan the week. Skip the store. Baby meal plans with one tap Instacart ordering.">
     <meta property="og:image" content="https://tocomo.co/assets/hero-logo.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tocomo.co">
@@ -26,14 +26,14 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@tocomoapp">
-    <meta name="twitter:title" content="Tocomo &mdash; Safe BLW Recipes &amp; Guides for Your Baby">
-    <meta name="twitter:description" content="Safe baby-led weaning recipes, cutting guides by age and a weekly meal planner with one-tap grocery ordering.">
+    <meta name="twitter:title" content="Tocomo: Baby Meal Planner with Grocery Delivery">
+    <meta name="twitter:description" content="Plan the week. Skip the store. Baby meal plans with one tap Instacart grocery ordering.">
     <meta name="twitter:image" content="https://tocomo.co/assets/hero-logo.png">
 
     <!-- SEO -->
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Tocomo LLC">
-    <meta name="keywords" content="BLW, baby led weaning, BLW recipes, baby led weaning recipes, BLW app, baby food recipes, first foods baby, BLW cutting guide, baby led weaning guide, infant nutrition, BLW meal plan, baby led weaning 6 months, safe baby food, BLW first foods">
+    <meta name="author" content="CreaActiva LLC">
+    <meta name="keywords" content="baby meal planner, baby meal plan, baby food app, grocery delivery baby food, instacart baby food, baby led weaning, BLW recipes, starting solids, baby cutting guide, allergen tracker baby, first foods baby, baby meal prep">
     <link rel="canonical" href="https://tocomo.co">
     <meta name="language" content="en">
     <meta property="og:locale" content="en_US">
@@ -47,7 +47,7 @@
         "name": "Tocomo",
         "operatingSystem": "iOS",
         "applicationCategory": "HealthApplication",
-        "description": "App de nutrici\u00f3n infantil con recetas seguras para beb\u00e9s, gu\u00edas de corte por edad y planificador semanal.",
+        "description": "Baby meal planning app with age safe recipes, cutting guides, allergen alerts and one tap Instacart grocery ordering.",
         "offers": {
             "@type": "Offer",
             "price": "0",
@@ -55,9 +55,15 @@
         },
         "author": {
             "@type": "Organization",
-            "name": "Tocomo LLC",
-            "url": "https://tocomo.co"
-        }
+            "name": "CreaActiva LLC",
+            "url": "https://tocomo.co",
+            "sameAs": [
+                "https://instagram.com/tocomoapp",
+                "https://www.tiktok.com/@tocomo.app",
+                "https://x.com/tocomoapp"
+            ]
+        },
+        "installUrl": "https://apps.apple.com/us/app/tocomo/id6758968527"
     }
     </script>
 
@@ -248,6 +254,50 @@
             color: var(--clay);
             transition: color 0.3s ease, text-shadow 0.3s ease;
             z-index: 11;
+        }
+
+        /* ── Hero CTA (above tagline, bottom-left) ── */
+        .hero-cta {
+            position: absolute;
+            bottom: 128px;
+            left: 52px;
+            z-index: 11;
+            max-width: 360px;
+        }
+        .hero-line {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 19px;
+            line-height: 1.35;
+            color: var(--dark);
+            margin-bottom: 14px;
+            text-shadow: 0 1px 10px rgba(255, 243, 237, 0.85);
+        }
+        .hero-badge {
+            padding: 11px 22px;
+            font-size: 13px;
+            border-radius: 14px;
+        }
+
+        /* ── Craft guards: touch, reduced motion, press feedback ── */
+        .store-badge:active,
+        .lang-btn:active,
+        .email-form button:active {
+            transform: scale(0.97);
+        }
+        @media (hover: none), (pointer: coarse) {
+            .cursor-dot { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cursor-dot { display: none; }
+            .parallax-el { transition: none !important; transform: none !important; }
+            .fade-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .scroll-indicator svg { animation: none !important; }
+            html { scroll-behavior: auto; }
+        }
+        @media (max-width: 640px) {
+            .hero-cta { left: 24px; right: 24px; bottom: 150px; }
+            .hero-line { font-size: 17px; }
         }
 
         /* ── Scroll indicator (bottom-center) ── */
@@ -468,6 +518,9 @@
             scrollbar-width: none;
         }
         .screenshots-grid::-webkit-scrollbar { display: none; }
+        @media (min-width: 1024px) {
+            .screenshots-grid { justify-content: center; }
+        }
         .glare-card {
             position: relative;
             width: 140px;
@@ -487,6 +540,7 @@
         .glare-card img {
             display: block;
             width: 100%;
+            height: auto;
             border-radius: 28px;
             pointer-events: none;
         }
@@ -836,7 +890,7 @@
             }
             .hero-reveal.mobile-reveal {
                 opacity: 1;
-                transition: opacity 0.15s ease-in;
+                transition: opacity 0.15s ease-out;
             }
 
             .ui-layer {
@@ -1049,23 +1103,27 @@
 
         <!-- Download App (top-right) -->
         <a href="#download" class="nav-link parallax-el" id="navLink" data-depth="0.015">
-            <span data-i18n="nav_link">Descarga la app</span><span class="arrow">&rarr;</span>
+            <span data-i18n="nav_link">Download the app</span><span class="arrow">&rarr;</span>
         </a>
 
         <!-- SEO H1 (visually hidden, accessible to crawlers) -->
-        <h1 class="sr-only">Tocomo &mdash; Safe BLW Recipes &amp; Meal Plans for Your Baby</h1>
+        <h1 class="sr-only">Tocomo: Baby Meal Plans with Instacart Grocery Delivery</h1>
 
         <!-- Tagline (bottom-left) -->
-        <div class="tagline parallax-el" id="tagline" data-depth="0.01" data-i18n="tagline">
-            Como todo, crezco fuerte
+        <div class="tagline parallax-el" id="tagline" data-depth="0.01" data-i18n="tagline">I eat it all, I grow strong</div>
+
+        <!-- Hero CTA: value line + App Store badge -->
+        <div class="hero-cta parallax-el" data-depth="0.012">
+            <div class="hero-line" data-i18n="hero_line">Your baby’s week of meals, planned. Groceries delivered by Instacart.</div>
+            <a href="https://apps.apple.com/us/app/tocomo/id6758968527" class="store-badge hero-badge" id="heroStoreLink" target="_blank" rel="noopener"><span data-i18n="hero_store">Download on the App Store</span></a>
         </div>
 
         <!-- Mobile tap hint -->
-        <div class="mobile-hint" id="mobileHint" data-i18n="mobile_hint">toca para descubrir</div>
+        <div class="mobile-hint" id="mobileHint" data-i18n="mobile_hint">tap to discover</div>
 
         <!-- Scroll down indicator (bottom-center) -->
         <a href="#features" class="scroll-indicator" id="scrollIndicator">
-            <span data-i18n="scroll_text">Ver m&aacute;s</span>
+            <span data-i18n="scroll_text">See more</span>
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </a>
 
@@ -1079,6 +1137,12 @@
             </a>
             <a href="https://x.com/tocomoapp" target="_blank" rel="noopener" aria-label="X / Twitter">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.reddit.com/user/tocomoapp" target="_blank" rel="noopener" aria-label="Reddit">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.91 2.961.91.477 0 2.105-.056 2.961-.91a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@tocomoapp" target="_blank" rel="noopener" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
             <a href="mailto:hello@tocomo.co" aria-label="Contact">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -1097,39 +1161,39 @@
         <!-- Features -->
         <div class="section" id="features">
             <div class="section-header fade-up">
-                <h2 data-i18n="feat_title">Todo lo que necesitas</h2>
-                <p data-i18n="feat_subtitle">Recetas seguras, comunidad real y herramientas para que cada comida sea un paso hacia un futuro saludable.</p>
+                <h2 data-i18n="feat_title">Everything you need</h2>
+                <p data-i18n="feat_subtitle">Safe recipes, real community, and tools to make every meal a step toward a healthy future.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card fade-up">
                     <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M5 12v5a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-5"/><path d="M9 2c0 1.5-1.5 2.5-1.5 4"/><path d="M12 2c0 1.5-1.5 2.5-1.5 4"/><path d="M15 2c0 1.5-1.5 2.5-1.5 4"/></svg></div>
-                    <h3 data-i18n="f1_title">48+ Recetas seguras</h3>
-                    <p data-i18n="f1_desc">Recetas aprobadas por edad con ingredientes reales. Desde los 6 meses hasta el primer a&ntilde;o y m&aacute;s all&aacute;.</p>
+                    <h3 data-i18n="f1_title">48+ Safe Recipes</h3>
+                    <p data-i18n="f1_desc">Age-approved recipes with real ingredients. From 6 months to the first year and beyond.</p>
                 </div>
                 <div class="feature-card fade-up">
                     <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg></div>
-                    <h3 data-i18n="f2_title">Gu&iacute;as de corte</h3>
-                    <p data-i18n="f2_desc">Instrucciones espec&iacute;ficas por edad para cortar cada alimento de forma segura. Porque la seguridad va primero.</p>
+                    <h3 data-i18n="f2_title">Cutting Guides</h3>
+                    <p data-i18n="f2_desc">Age-specific instructions for safely cutting every food. Because safety comes first.</p>
                 </div>
                 <div class="feature-card fade-up">
                     <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
-                    <h3 data-i18n="f3_title">Planificador semanal</h3>
-                    <p data-i18n="f3_desc">Organiza las comidas de la semana con plantillas listas. Hasta 5 comidas al d&iacute;a, desayuno a cena.</p>
+                    <h3 data-i18n="f3_title">Weekly Planner</h3>
+                    <p data-i18n="f3_desc">Organize the week’s meals with ready-made templates. Up to 5 meals a day, breakfast to dinner.</p>
                 </div>
                 <div class="feature-card fade-up">
                     <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                    <h3 data-i18n="f4_title">Comunidad de mam&aacute;s</h3>
-                    <p data-i18n="f4_desc">Comparte los platitos de tu beb&eacute;, inspira y d&eacute;jate inspirar. Juntas lo logramos.</p>
+                    <h3 data-i18n="f4_title">Mom Community</h3>
+                    <p data-i18n="f4_desc">Share your baby’s dishes, inspire and be inspired. Together we can do it.</p>
                 </div>
                 <div class="feature-card fade-up">
                     <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg></div>
-                    <h3 data-i18n="f5_title">Lista de compras</h3>
-                    <p data-i18n="f5_desc">Genera tu lista autom&aacute;ticamente desde las recetas. C&oacute;piala y ll&eacute;vala al s&uacute;per.</p>
+                    <h3 data-i18n="f5_title">One Tap Grocery Ordering</h3>
+                    <p data-i18n="f5_desc">Your week’s ingredients become an Instacart cart in one tap. Groceries at your door, store trip skipped.</p>
                 </div>
                 <div class="feature-card fade-up">
                     <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
-                    <h3 data-i18n="f6_title">Espa&ntilde;ol e Ingl&eacute;s</h3>
-                    <p data-i18n="f6_desc">Disponible en dos idiomas para familias biling&uuml;es. Cambia de idioma en un toque.</p>
+                    <h3 data-i18n="f6_title">Spanish &amp; English</h3>
+                    <p data-i18n="f6_desc">Available in two languages for bilingual families. Switch languages in a tap.</p>
                 </div>
             </div>
         </div>
@@ -1138,41 +1202,41 @@
         <div class="screenshots-section" id="screenshots">
             <div class="section" style="padding-bottom: 0;">
                 <div class="section-header fade-up">
-                    <h2 data-i18n="ss_title">Mira la app por dentro</h2>
-                    <p data-i18n="ss_subtitle">Dise&ntilde;ada para mam&aacute;s ocupadas. Simple, bonita y funcional.</p>
+                    <h2 data-i18n="ss_title">See inside the app</h2>
+                    <p data-i18n="ss_subtitle">Designed for busy moms. Simple, beautiful, and functional.</p>
                 </div>
             </div>
             <div class="screenshots-grid fade-up">
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_1.jpg" alt="Tocomo weekly meal planner with meals planned for your baby's age" loading="lazy">
+                    <img src="assets/screenshots/frame_1.jpg" alt="Tocomo weekly meal planner with meals planned for your baby's age" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_2.jpg" alt="Tocomo ingredient tracking and food analytics for baby nutrition" loading="lazy">
+                    <img src="assets/screenshots/frame_2.jpg" alt="Tocomo ingredient tracking and food analytics for baby nutrition" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_3.jpg" alt="Tocomo recipe detail showing safe age-appropriate baby meals and snacks" loading="lazy">
+                    <img src="assets/screenshots/frame_3.jpg" alt="Tocomo recipe detail showing safe age-appropriate baby meals and snacks" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_4.jpg" alt="Tocomo smart shopping list for baby meal ingredients" loading="lazy">
+                    <img src="assets/screenshots/frame_4.jpg" alt="Tocomo smart shopping list for baby meal ingredients" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_5.jpg" alt="Tocomo one-click grocery delivery integration" loading="lazy">
+                    <img src="assets/screenshots/frame_5.jpg" alt="Tocomo one-click grocery delivery integration" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_6.jpg" alt="Tocomo app home screen with 30-day auto-generated meal plans for babies" loading="lazy">
+                    <img src="assets/screenshots/frame_6.jpg" alt="Tocomo app home screen with 30-day auto-generated meal plans for babies" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_7.jpg" alt="Tocomo recipe gallery" loading="lazy">
+                    <img src="assets/screenshots/frame_7.jpg" alt="Tocomo recipe gallery" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
                 <div class="glare-card">
-                    <img src="assets/screenshots/frame_8.jpg" alt="Tocomo baby profile with age-based personalization" loading="lazy">
+                    <img src="assets/screenshots/frame_8.jpg" alt="Tocomo baby profile with age-based personalization" loading="lazy" width="552" height="1200">
                     <div class="glare-overlay"></div>
                 </div>
             </div>
@@ -1183,15 +1247,15 @@
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="number">48+</div>
-                    <div class="label" data-i18n="stat1">Recetas</div>
+                    <div class="label" data-i18n="stat1">Recipes</div>
                 </div>
                 <div class="stat-item">
                     <div class="number">6-12+</div>
-                    <div class="label" data-i18n="stat2">Meses de edad</div>
+                    <div class="label" data-i18n="stat2">Months old</div>
                 </div>
                 <div class="stat-item">
                     <div class="number">100%</div>
-                    <div class="label" data-i18n="stat3">Gratis para empezar</div>
+                    <div class="label" data-i18n="stat3">Free to start</div>
                 </div>
             </div>
         </div>
@@ -1199,54 +1263,54 @@
         <!-- Lead Magnet + Newsletter Signup -->
         <div class="section lead-magnet-section" id="newsletter">
             <div class="section-header fade-up">
-                <span class="lead-magnet-badge" data-i18n="lm_badge">Gratis</span>
-                <h2 data-i18n="lm_title">Descarga la Gu&iacute;a de<br>Primeros Alimentos BLW</h2>
-                <p data-i18n="lm_subtitle">Recibe nuestra gu&iacute;a completa + recetas semanales, tips de seguridad y trucos de otras mam&aacute;s directo a tu correo.</p>
+                <span class="lead-magnet-badge" data-i18n="lm_badge">Free</span>
+                <h2 data-i18n="lm_title">Download the First Foods<br>BLW Guide</h2>
+                <p data-i18n="lm_subtitle">Get our complete guide + weekly recipes, safety tips, and tricks from other moms straight to your inbox.</p>
             </div>
 
             <div class="lead-magnet-benefits fade-up">
                 <div class="benefit-item">
                     <span class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
-                    <span data-i18n="lm_b1">20 primeros alimentos</span>
+                    <span data-i18n="lm_b1">20 first foods</span>
                 </div>
                 <div class="benefit-item">
                     <span class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M15.5 4.5L7.5 12.5l-1 5 5-1 8-8"/><path d="M14 6l3 3"/></svg></span>
-                    <span data-i18n="lm_b2">Cortes por edad</span>
+                    <span data-i18n="lm_b2">Cuts by age</span>
                 </div>
                 <div class="benefit-item">
                     <span class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-                    <span data-i18n="lm_b3">Gu&iacute;a anti-atragantamiento</span>
+                    <span data-i18n="lm_b3">Anti-choking guide</span>
                 </div>
                 <div class="benefit-item">
                     <span class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-                    <span data-i18n="lm_b4">Plan semanal del primer mes</span>
+                    <span data-i18n="lm_b4">First month meal plan</span>
                 </div>
             </div>
 
-            <p class="lead-magnet-social-proof fade-up" data-i18n="lm_proof">Mam&aacute;s ya reciben recetas cada lunes</p>
-            <p class="fade-up" style="text-align:center; margin-top:8px;"><a href="guia-blw.html" style="color:var(--terracotta); font-weight:500; text-decoration:underline;" data-i18n="lm_link">Lee la gu&iacute;a completa aqu&iacute;</a></p>
+            <p class="lead-magnet-social-proof fade-up" data-i18n="lm_proof">Moms already get recipes every Monday</p>
+            <p class="fade-up" style="text-align:center; margin-top:8px;"><a href="guia-blw.html" style="color:var(--terracotta); font-weight:500; text-decoration:underline;" data-i18n="lm_link">Read the full guide here</a></p>
 
             <form class="email-form fade-up" id="emailForm">
                 <div class="email-input-group">
-                    <input type="email" name="email" id="emailInput" placeholder="tu@correo.com" required autocomplete="email" aria-label="Correo electr&oacute;nico">
-                    <button type="submit" data-i18n="email_btn">Quiero la gu&iacute;a</button>
+                    <input type="email" name="email" id="emailInput" placeholder="you@email.com" required autocomplete="email" aria-label="Correo electr&oacute;nico">
+                    <button type="submit" data-i18n="email_btn">Get the guide</button>
                 </div>
-                <p class="email-note" data-i18n="email_note">100% gratis. Cancela cuando quieras. Sin spam.</p>
+                <p class="email-note" data-i18n="email_note">100% free. Cancel anytime. No spam.</p>
             </form>
             <div class="email-success" id="emailSuccess" style="display:none;">
-                <p data-i18n="email_ok">&iexcl;Listo! Revisa tu correo &mdash; la gu&iacute;a va en camino.</p>
+                <p data-i18n="email_ok">Done! Check your inbox. The guide is on its way.</p>
             </div>
         </div>
 
         <!-- Download CTA -->
         <div class="download-section" id="download">
-            <h2 class="fade-up" data-i18n="dl_title">Descarga Tocomo gratis</h2>
-            <p class="fade-up" data-i18n="dl_subtitle">Comienza hoy. Tu beb&eacute; merece comer bien desde el primer bocado.</p>
+            <h2 class="fade-up" data-i18n="dl_title">Download Tocomo free</h2>
+            <p class="fade-up" data-i18n="dl_subtitle">Start today. Your baby deserves to eat well from the very first bite.</p>
             <div class="store-badges fade-up">
                 <a href="https://apps.apple.com/us/app/tocomo/id6758968527" class="store-badge" id="appStoreLink" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                     <div class="badge-text">
-                        <small data-i18n="store_avail">Disponible en</small>
+                        <small data-i18n="store_avail">Available on</small>
                         <strong>App Store</strong>
                     </div>
                 </a>
@@ -1255,11 +1319,11 @@
 
         <!-- Footer -->
         <footer class="site-footer">
-            <div class="footer-left">&copy; 2026 Tocomo LLC. All rights reserved.</div>
+            <div class="footer-left">&copy; 2026 CreaActiva LLC. All rights reserved.</div>
             <div class="footer-links">
-                <a href="privacy.html" data-i18n="ft_privacy">Privacidad</a>
-                <a href="terms.html" data-i18n="ft_terms">T&eacute;rminos</a>
-                <a href="mailto:hello@tocomo.co" data-i18n="ft_contact">Contacto</a>
+                <a href="privacy.html" data-i18n="ft_privacy">Privacy</a>
+                <a href="terms.html" data-i18n="ft_terms">Terms</a>
+                <a href="mailto:hello@tocomo.co" data-i18n="ft_contact">Contact</a>
             </div>
             <div class="footer-socials">
                 <a href="https://instagram.com/tocomoapp" target="_blank" rel="noopener" aria-label="Instagram">
@@ -1517,7 +1581,7 @@
                 btn.disabled = true;
                 if (typeof gtag === 'function') gtag('event', 'sign_up', { method: 'email_newsletter' });
                 // Redirect to Beehiiv subscribe page with email pre-filled
-                window.location.href = 'https://tocomo.beehiiv.com/subscribe?email=' + encodeURIComponent(emailValue);
+                window.location.href = 'https://tocomo.beehiiv.com/subscribe';
             });
         }
 
@@ -1599,6 +1663,8 @@
         const T = {
             es: {
                 nav_link: 'Descarga la app',
+                hero_line: 'La semana de comidas de tu beb\u00e9, planificada. El s\u00faper llega con Instacart.',
+                hero_store: 'Desc\u00e1rgala en el App Store',
                 tagline: 'Como todo, crezco fuerte',
                 mobile_hint: 'toca para descubrir',
                 scroll_text: 'Ver m\u00e1s',
@@ -1612,7 +1678,7 @@
                 f3_desc: 'Organiza las comidas de la semana con plantillas listas. Hasta 5 comidas al d\u00eda, desayuno a cena.',
                 f4_title: 'Comunidad de mam\u00e1s',
                 f4_desc: 'Comparte los platitos de tu beb\u00e9, inspira y d\u00e9jate inspirar. Juntas lo logramos.',
-                f5_title: 'Lista de compras',
+                f5_title: 'S\u00faper con un toque',
                 f5_desc: 'Genera tu lista autom\u00e1ticamente desde las recetas. C\u00f3piala y ll\u00e9vala al s\u00faper.',
                 f6_title: 'Espa\u00f1ol e Ingl\u00e9s',
                 f6_desc: 'Disponible en dos idiomas para familias biling\u00fces. Cambia de idioma en un toque.',
@@ -1632,7 +1698,7 @@
                 lm_link: 'Lee la gu\u00eda completa aqu\u00ed',
                 email_btn: 'Quiero la gu\u00eda',
                 email_note: '100% gratis. Cancela cuando quieras. Sin spam.',
-                email_ok: '\u00a1Listo! Revisa tu correo \u2014 la gu\u00eda va en camino.',
+                email_ok: '\u00a1Listo! Revisa tu correo. La gu\u00eda va en camino.',
                 dl_title: 'Descarga Tocomo gratis',
                 dl_subtitle: 'Comienza hoy. Tu beb\u00e9 merece comer bien desde el primer bocado.',
                 store_avail: 'Disponible en',
@@ -1642,6 +1708,8 @@
             },
             en: {
                 nav_link: 'Download the app',
+                hero_line: 'Your baby\u2019s week of meals, planned. Groceries delivered by Instacart.',
+                hero_store: 'Download on the App Store',
                 tagline: 'I eat it all, I grow strong',
                 mobile_hint: 'tap to discover',
                 scroll_text: 'See more',
@@ -1655,8 +1723,8 @@
                 f3_desc: 'Organize the week\u2019s meals with ready-made templates. Up to 5 meals a day, breakfast to dinner.',
                 f4_title: 'Mom Community',
                 f4_desc: 'Share your baby\u2019s dishes, inspire and be inspired. Together we can do it.',
-                f5_title: 'Shopping List',
-                f5_desc: 'Auto-generate your list from recipes. Copy it and take it to the store.',
+                f5_title: 'One Tap Grocery Ordering',
+                f5_desc: 'Your week\u2019s ingredients become an Instacart cart in one tap. Groceries at your door, store trip skipped.',
                 f6_title: 'Spanish & English',
                 f6_desc: 'Available in two languages for bilingual families. Switch languages in a tap.',
                 ss_title: 'See inside the app',
@@ -1675,7 +1743,7 @@
                 lm_link: 'Read the full guide here',
                 email_btn: 'Get the guide',
                 email_note: '100% free. Cancel anytime. No spam.',
-                email_ok: 'Done! Check your inbox \u2014 the guide is on its way.',
+                email_ok: 'Done! Check your inbox. The guide is on its way.',
                 dl_title: 'Download Tocomo free',
                 dl_subtitle: 'Start today. Your baby deserves to eat well from the very first bite.',
                 store_avail: 'Available on',
@@ -1685,7 +1753,7 @@
             }
         };
 
-        let currentLang = 'es';
+        let currentLang = 'en';
 
         function setLang(lang) {
             currentLang = lang;
@@ -1741,11 +1809,11 @@
                 setLang(saved);
                 return;
             }
-            var browserLang = (navigator.language || navigator.userLanguage || 'es').slice(0, 2).toLowerCase();
-            if (browserLang === 'en') {
-                setLang('en');
+            var browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
+            if (browserLang === 'es') {
+                setLang('es');
             }
-            // else keep default Spanish (already rendered in HTML)
+            // else keep default English (already rendered in HTML)
         })();
 
         // ── GA4: Section visibility tracking ──
